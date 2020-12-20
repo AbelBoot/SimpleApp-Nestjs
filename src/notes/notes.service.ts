@@ -12,7 +12,9 @@ export class NotesService{
         return this.notesRepository.find()
     }
     createNote(text: noteDTO){
+        console.log("text from services", text)
         const note = this.notesRepository.create(text)
         this.notesRepository.save(note)
+        return note
     }
 }

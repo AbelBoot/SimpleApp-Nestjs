@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [NotesModule, TypeOrmModule.forRoot()],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
