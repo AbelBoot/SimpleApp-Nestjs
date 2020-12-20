@@ -21,4 +21,12 @@ export class NotesAPI {
         const data = await resp.json()
         return data
     }
+    public static async create(): Promise<boolean>{
+        const resp = await fetch("http://localhost:3000", {
+            method: "POST", 
+            headers: {"Content-Type": "application/json"},
+            body: "testing"
+        })
+        return resp.ok
+    }
 }
