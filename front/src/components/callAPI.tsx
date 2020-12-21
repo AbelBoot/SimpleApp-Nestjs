@@ -21,12 +21,14 @@ export class NotesAPI {
         const data = await resp.json()
         return data
     }
-    public static async create(): Promise<boolean>{
+    public static async create(): Promise<noteDTO[]>{
         const resp = await fetch("http://localhost:3000", {
             method: "POST", 
             headers: {"Content-Type": "application/json"},
-            body: "testing"
+            body: JSON.stringify("sixth")
         })
-        return resp.ok
+        const dataPost = await resp.json()
+        console.log("resp", resp)
+        return dataPost
     }
 }

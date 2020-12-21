@@ -7,6 +7,8 @@ interface TextInputProps {
 }
 
 
+
+
 export const TextArea: React.FC<TextInputProps> = ({handleChange}) => {
 const inputRef = useRef<HTMLInputElement>(null)
 const [notes, setNotes] = useState<noteDTO[]>([])
@@ -30,5 +32,6 @@ useEffect(() => {
             ref={inputRef} 
             onChange={handleChange} 
             />
+        
     )
 }
