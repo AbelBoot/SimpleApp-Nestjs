@@ -1,17 +1,5 @@
+import { Http2ServerResponse } from "http2"
 import { noteDTO } from "../noteDTO"
-
-// export async function callAPI(): Promise<noteDTO[]>{
-//     const notes = await fetch("http:localhost:3000", {method: "GET"})
-        
-//     //console.log("notes", notes.json())
-
-//     //const data = await notes.json()
-//             //.catch(err => console.log("err", err))
-            
-        
-       
-//     return notes    
-// }
 
 export class NotesAPI {
     public static async getAll(): Promise<noteDTO[]>{
@@ -21,14 +9,16 @@ export class NotesAPI {
         const data = await resp.json()
         return data
     }
-    public static async create(): Promise<noteDTO[]>{
+    public static async create(stringg: string | undefined): Promise<boolean | string>{
         const resp = await fetch("http://localhost:3000", {
             method: "POST", 
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify("sixth")
+            body: JSON.stringify({"notes": `${stringg}`})
         })
-        const dataPost = await resp.json()
         console.log("resp", resp)
-        return dataPost
+        const res = resp.ok
+        //const dataPost = await resp.json()
+        return res
+        //return dataPost
     }
 }

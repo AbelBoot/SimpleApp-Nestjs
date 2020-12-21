@@ -3,6 +3,7 @@ import { NotesAPI } from './components/callAPI';
 import { useState, useEffect } from "react"
 import { noteDTO } from "./noteDTO"
 import {  TextArea } from "./components/TextArea"
+import { ButtonDelete } from "./components/Button"
 
 
 const App: React.FC = () => {
@@ -12,17 +13,11 @@ const App: React.FC = () => {
     async function callingAPI() {
       const resp = await NotesAPI.getAll()
       setNotes(resp)
+      console.log("resp from getAll", resp)
     }
     callingAPI()
   }, [])
-  // useEffect(() => {
-  //   async function create() {
-  //     const resp = await NotesAPI.create()
-  //     console.log("resppp", resp)
-  //     setNotes(resp)
-  //   }
-  //   create()
-  // }, [])
+
   return (
     <>
     <ul>
@@ -30,6 +25,7 @@ const App: React.FC = () => {
     </ul>
     <TextArea handleChange={ e => {
       console.log("e.target.value", e.target.value)}}></TextArea>
+    <ButtonDelete textButton="delete"></ButtonDelete>
     </>
   )
 }
