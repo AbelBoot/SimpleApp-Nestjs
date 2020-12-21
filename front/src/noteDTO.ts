@@ -1,4 +1,4 @@
 export interface noteDTO{
-    id: string
+    id?: string
     notes: string
 }
