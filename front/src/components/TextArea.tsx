@@ -3,28 +3,35 @@ import { NotesAPI } from './callAPI';
 import { noteDTO } from "../noteDTO"
 
 interface TextInputProps {
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    //inputValue?: string,
+    //handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export const TextArea: React.FC<TextInputProps> = ({handleChange}) => {
+export const TextArea: React.FC<TextInputProps> = ({
+    //inputValue,
+     handleClick}) => {
 const inputRef = useRef<HTMLInputElement>(null)
 const [notes, setNotes] = useState<noteDTO[]>([])
 
-handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    console.log("input", typeof inputRef.current?.value)
-    const temp = inputRef.current?.value
+handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    //const temp = inputRef.current?.value
+    //inputValue = inputRef.current?.value
+    //console.log("input value text", inputValue)
     async function callingAPI() {
-        await NotesAPI.create(temp)
+        await NotesAPI.create(inputRef.current?.value)
        console.log("sent from handleChange")
        }
        callingAPI()
 }
   
     return (
+        <div>
+        <button onClick={handleClick}>Create Note</button>
         <input 
             ref={inputRef} 
-            onChange={handleChange} 
             />
+        </div>        
         
     )
 }
