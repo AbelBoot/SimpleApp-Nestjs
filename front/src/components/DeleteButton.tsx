@@ -1,5 +1,6 @@
 import React from "react"
 import { callToBackEnd } from '../utilities/callToBackEnd';
+import { Button } from "../style/SmallStyledComponents"
 
 interface ButtonProps {
     noteToDelete?: string,
@@ -17,7 +18,7 @@ export const  DeleteButton: React.FC<ButtonProps> = ({ noteToDelete,handleClick 
 
     return (
         <>
-        <button onClick={handleClick}>Delete Note</button>
+        <Button onClick={handleClick}>Delete Note</Button>
         </>
     )
 }

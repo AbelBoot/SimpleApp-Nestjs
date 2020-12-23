@@ -5,6 +5,9 @@ import { noteDTO } from "./utilities/noteDTO"
 import { DeleteButton } from "./components/DeleteButton"
 import { NoteCreator } from "./components/NoteCreator"
 import { UpdateInput } from "./components/UpdateInput"
+import { Container, NoteCreatorContainer, ExistingNotesContainer, NoteContainer, SingleElementContainer } from "./style/Containers"
+import { H3 } from "./style/SmallStyledComponents"
+import { Input } from "./style/SmallStyledComponents"
 
 interface AppProps {
 }
@@ -21,22 +24,37 @@ const App: React.FC<AppProps> = ({}) => {
 
   return (
     <>
+    <Container>
+    <H3>Simple Note-Taking App</H3>
+    <ExistingNotesContainer>
     {notes.map(note => {
-    return (
-      <div>
-          <input defaultValue={note.notes}/>
-          <DeleteButton
-            noteToDelete={note.id}
-            handleClick={() => {}}
-          />
-          <UpdateInput
-            noteToUpdate={note.id}
-            handleClick={() => {}}    
-          />
-      </div>
-    )
+      return (
+        <div>
+        <NoteContainer>
+          <SingleElementContainer>
+            <Input defaultValue={note.notes}/>
+          </SingleElementContainer>
+          <SingleElementContainer>
+            <DeleteButton
+              noteToDelete={note.id}
+              handleClick={() => {}}
+            />
+          </SingleElementContainer>
+        </NoteContainer>
+        <NoteContainer>
+            <UpdateInput
+              noteToUpdate={note.id}
+              handleClick={() => {}}    
+            />
+        </NoteContainer>
+        </div>
+      )
     })}
-    <NoteCreator handleClick={() => {}}/>
+    </ExistingNotesContainer>
+    <NoteCreatorContainer>
+      <NoteCreator handleClick={() => {}}/>
+    </NoteCreatorContainer>
+    </Container> 
     </>
   )
 }

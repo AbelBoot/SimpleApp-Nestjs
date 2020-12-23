@@ -1,5 +1,7 @@
 import React, { useRef } from "react"
 import { callToBackEnd } from '../utilities/callToBackEnd';
+import { Button } from "../style/SmallStyledComponents"
+import { Input } from "../style/SmallStyledComponents"
 
 interface InputUpdateProps {
     noteToUpdate?: string,
@@ -19,8 +21,8 @@ export const UpdateInput: React.FC<InputUpdateProps> = ({noteToUpdate,  handleCl
     
     return (
         <>
-        <input ref={inputRef} />
-        <button onClick={handleClick}>Update Note</button>
+        <Input ref={inputRef} />
+        <Button onClick={handleClick}>Update Note</Button>
         </>        
     )
 }

@@ -11,6 +11,7 @@ export class NotesController {
     getAllNotes(): Promise<NotesEntity[]>{
         return this.notesService.getAllNotes()
     }
+    
     @Post()
     createNote(@Body() noteText: noteDTO){
         this.notesService.createNote(noteText)

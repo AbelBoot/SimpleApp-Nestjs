@@ -1,5 +1,7 @@
 import React, { useRef } from "react"
 import { callToBackEnd } from '../utilities/callToBackEnd';
+import { Button } from "../style/SmallStyledComponents"
+import { Input } from "../style/SmallStyledComponents"
 
 interface NoteCreatorProps {
     handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void
@@ -18,8 +20,8 @@ export const NoteCreator: React.FC<NoteCreatorProps> = ({ handleClick }) => {
 
     return (
         <>
-        <button onClick={handleClick}>Create Note</button>
-        <input ref={inputRef} />
+        <Button onClick={handleClick}>Create Note</Button>
+        <Input ref={inputRef} />
         </>        
     )
 }
