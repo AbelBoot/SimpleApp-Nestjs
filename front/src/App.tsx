@@ -1,49 +1,42 @@
-import React from 'react';
-import { NotesAPI } from './components/callAPI';
+import React from 'react'
 import { useState, useEffect } from "react"
-import { SetStateAction } from 'react';
-import { noteDTO } from "./noteDTO"
-import {  TextArea } from "./components/TextArea"
-import { ButtonDelete } from "./components/ButtonDelete"
+import { callToBackEnd } from './utilities/callToBackEnd'
+import { noteDTO } from "./utilities/noteDTO"
+import { DeleteButton } from "./components/DeleteButton"
+import { NoteCreator } from "./components/NoteCreator"
+import { UpdateInput } from "./components/UpdateInput"
 
 interface AppProps {
-  //currentNote?: noteDTO[];
-  //setCurrentNote?: React.Dispatch<SetStateAction<number[]>>;
-  //inputValue?: string
 }
 
 const App: React.FC<AppProps> = ({}) => {
   const [notes, setNotes] = useState<noteDTO[]>([])
-
   useEffect(() => {
-    async function callingAPI() {
-      const resp = await NotesAPI.getAll()
+    async function callAPI() {
+      const resp = await callToBackEnd.getAll()
       setNotes(resp)
     }
-    callingAPI()
+    callAPI()
   }, [])
 
   return (
     <>
-    <ul>
     {notes.map(note => {
     return (
       <div>
-      <li>{note.notes}</li>
-      <li>{note.created}</li>
-      <ButtonDelete 
-        noteToDelete={note.id}
-        handleClick={() => {}}
-        handleClickToPatch={() => {}}
-        />
+          <input defaultValue={note.notes}/>
+          <DeleteButton
+            noteToDelete={note.id}
+            handleClick={() => {}}
+          />
+          <UpdateInput
+            noteToUpdate={note.id}
+            handleClick={() => {}}    
+          />
       </div>
     )
     })}
-    </ul>
-    <TextArea 
-      handleClick={() => {}}
-      handleChange={() => {}}
-    ></TextArea>
+    <NoteCreator handleClick={() => {}}/>
     </>
   )
 }
