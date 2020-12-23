@@ -12,37 +12,38 @@ interface AppProps {
   //inputValue?: string
 }
 
-const App: React.FC<AppProps> = ({
-//  inputValue
-}) => {
+const App: React.FC<AppProps> = ({}) => {
   const [notes, setNotes] = useState<noteDTO[]>([])
-  //const [currentNote, setCurrentNote] = useState<string>()
-interface TextAreaProps {
-}
 
   useEffect(() => {
     async function callingAPI() {
       const resp = await NotesAPI.getAll()
       setNotes(resp)
-      //setCurrentNote(inputValue)
-      //console.log("resp from getAll", resp)
-      //console.log("currentNote from App", currentNote)
     }
     callingAPI()
   }, [])
 
-
   return (
     <>
     <ul>
-    {notes.map(el => <li>{el.notes}</li>)}
+    {notes.map(note => {
+    return (
+      <div>
+      <li>{note.notes}</li>
+      <li>{note.created}</li>
+      <ButtonDelete 
+        noteToDelete={note.id}
+        handleClick={() => {}}
+        handleClickToPatch={() => {}}
+        />
+      </div>
+    )
+    })}
     </ul>
     <TextArea 
-      //inputValue={currentNote}
       handleClick={() => {}}
-      //handleChange={e => e.target.value}
+      handleChange={() => {}}
     ></TextArea>
-    <ButtonDelete textButton="Delete"></ButtonDelete>
     </>
   )
 }

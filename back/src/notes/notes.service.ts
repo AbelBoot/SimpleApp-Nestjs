@@ -17,4 +17,16 @@ export class NotesService{
         this.notesRepository.save(note)
         return note
     }
+    patchNote(id: string, notes: string): Promise<NotesEntity[]>{
+        console.log("patch note from service", notes)
+        //I cannot find the note by the id!!
+        console.log("note entity", this.notesRepository.find())
+
+        return null
+    }
+    deleteNote(id: string): Promise<NotesEntity[]>{
+        console.log("deleting from back", id)
+        this.notesRepository.delete(id)
+        return null
+    }
 }
